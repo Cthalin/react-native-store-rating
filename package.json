@@ -38,6 +38,10 @@
 		{
 			"name": "necatiozmen",
 			"email": "necati.ozmen.9@gmail.com"
+		},
+		{
+			"name": "cthalin",
+			"email": "erik.slowikowski@gmail.com"
 		}
 	],
 	"license": "MIT",
@@ -58,6 +62,6 @@
 	"peerDependencies": {
 		"react": "*",
 		"react-native": "*",
-		"react-native-ratings": "^4.1.0"
+		"react-native-ratings": "^7.3.0"
 	}
 }
