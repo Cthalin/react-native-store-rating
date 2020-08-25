@@ -22,9 +22,9 @@ export interface IProps {
 	isTransparent: boolean;
 	buttonStyle: ViewStyle;
 	onSendReview: () => void;
+	value: number;
 }
 export interface IState {
-	rating: number;
 	showContactForm: boolean;
 	review: string;
 	reviewError: boolean;

@@ -26,6 +26,7 @@ export class RateModal extends Component<IProps, IState> {
 		starLabels: ['Terrible', 'Bad', 'Okay', 'Good', 'Great'],
 		storeRedirectThreshold: 3,
 		totalStarCount: 5,
+		value: 0,
 	};
 
 	constructor(props: IProps) {
@@ -33,7 +34,6 @@ export class RateModal extends Component<IProps, IState> {
 
 		this.state = {
 			isModalOpen: props.isModalOpen,
-			rating: 5,
 			review: '',
 			reviewError: false,
 			showContactForm: false,
@@ -75,7 +75,6 @@ export class RateModal extends Component<IProps, IState> {
 		if (onStarSelected) {
 			onStarSelected(e);
 		}
-		this.setState({ rating: e });
 	}
 
 	private renderRateModal(): JSX.Element {
@@ -131,7 +130,11 @@ export class RateModal extends Component<IProps, IState> {
 				<View style={buttonContainer}>
 					<View style={{ flex: 1 }} />
 					{this.cancelButton()}
-					<Button text={rateBtnText} containerStyle={[button, buttonStyle]} onPress={this.sendRate.bind(this)} />
+					<Button
+						text={rateBtnText}
+						containerStyle={[button, buttonStyle]}
+						onPress={this.sendRate.bind(this)}
+					/>
 				</View>
 			</React.Fragment>
 		);
@@ -158,7 +161,11 @@ export class RateModal extends Component<IProps, IState> {
 				<View style={buttonContainer}>
 					<View style={{ flex: 1 }} />
 					{this.cancelButton()}
-					<Button text={sendBtnText} containerStyle={[button, buttonStyle]} onPress={this.sendContactUsForm.bind(this)} />
+					<Button
+						text={sendBtnText}
+						containerStyle={[button, buttonStyle]}
+						onPress={this.sendContactUsForm.bind(this)}
+					/>
 				</View>
 			</React.Fragment>
 		);
@@ -185,8 +192,8 @@ export class RateModal extends Component<IProps, IState> {
 	}
 
 	private sendRate(): void {
-		const { storeRedirectThreshold, playStoreUrl, iTunesStoreUrl, onSendReview } = this.props;
-		if (this.state.rating > storeRedirectThreshold) {
+		const { storeRedirectThreshold, playStoreUrl, iTunesStoreUrl, onSendReview, value } = this.props;
+		if (value >= storeRedirectThreshold) {
 			Platform.OS === 'ios' ?
 				Linking.openURL(iTunesStoreUrl) :
 				Linking.openURL(playStoreUrl);
