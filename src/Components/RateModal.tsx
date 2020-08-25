@@ -1,6 +1,6 @@
 
 import React, { Component } from 'react';
-import { Linking, Modal, Platform, Text, View } from 'react-native';
+import {Linking, Modal, Platform, Text, TouchableWithoutFeedback, View} from 'react-native';
 import { AirbnbRating } from 'react-native-ratings';
 
 import { RateModalStyles } from '../Assets/Styles/RateModal';
@@ -45,7 +45,12 @@ export class RateModal extends Component<IProps, IState> {
 		const { isModalOpen } = this.state;
 		return (
 			<Modal transparent={isTransparent} visible={isModalOpen} onRequestClose={() => onClosed}>
+				<TouchableWithoutFeedback onPress={() => {
+					onClosed();
+					this.setState({isModalOpen: false});
+				}}>
 				{this.renderRateModal()}
+				</TouchableWithoutFeedback>
 			</Modal>
 		);
 	}
